@@ -23,10 +23,26 @@ function getEndpoints(deviceAddress, endpoints)
   // En el código siguiente, se crean dos endpoints. El primero es un sensor de 
   // temperatura, mientras que el segundo es un sensor de dióxido de carbono.
 
-  endpoints.addEndpoint("1", "Reading", endpointType.volumeSensor);
-  endpoints.addEndpoint("2", "Battery", endpointType.voltageSensor);
-  endpoints.addEndpoint("3", "Valve Status", endpointType.closureController);
-  endpoints.addEndpoint("4", "Profiles", endpointType.volumeSensor);
+    endpoints.addEndpoint("1",  "Reading",                  endpointType.volumeSensor);
+    endpoints.addEndpoint("2",  "Battery",                  endpointType.voltageSensor);
+    endpoints.addEndpoint("3",  "Valve Status",             endpointType.closureController);
+
+    // IASensor con subtipo alarmInput:
+    endpoints.addEndpoint ("4",  "Metrological Status",     endpointType.iasSensor, iasEndpointSubType.alarmInput);
+    endpoints.addEndpoint("5",  "Valve Logic Status",       endpointType.iasSensor, iasEndpointSubType.alarmInput);
+    endpoints.addEndpoint("6",  "Valve State",              endpointType.iasSensor, iasEndpointSubType.alarmInput);
+    endpoints.addEndpoint("7",  "Battery Status",           endpointType.iasSensor, iasEndpointSubType.alarmInput);
+    endpoints.addEndpoint("8",  "Battery Compartment",      endpointType.iasSensor, iasEndpointSubType.alarmInput);
+    endpoints.addEndpoint("9",  "Storage Status",           endpointType.iasSensor, iasEndpointSubType.alarmInput);
+    endpoints.addEndpoint("10", "Overflow State",           endpointType.iasSensor, iasEndpointSubType.alarmInput);
+    endpoints.addEndpoint("11", "Reverse Flow State",       endpointType.iasSensor, iasEndpointSubType.alarmInput);
+    endpoints.addEndpoint("12", "Uncontrolled Flow Status", endpointType.iasSensor, iasEndpointSubType.alarmInput);
+    endpoints.addEndpoint("13", "Temperature Sensor State", endpointType.iasSensor, iasEndpointSubType.alarmInput);
+    endpoints.addEndpoint("14", "Clock State",              endpointType.iasSensor, iasEndpointSubType.alarmInput);
+    endpoints.addEndpoint("15", "Temperature",              endpointType.temperatureSensor);
+    
+
+
 }
 
 function validateDeviceAddress(address, result)
@@ -71,6 +87,6 @@ function updateEndpointUIRules(endpoint, rules)
   // - Los endpoints no se pueden eliminar.
   // - El subtipo de endpoint se puede cambiar, pero solo para el segundo endpoint.
   
-  // rules.canDelete = false;
+  rules.canDelete = true;
   // rules.canEditSubType = (endpoint.address == "2");
 }
